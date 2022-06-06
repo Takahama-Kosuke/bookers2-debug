@@ -18,7 +18,9 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <td>コメント数：<%= @book.book_comments.count %></td>
+          <td class="book-comments-counter">
+            <%= render "book_comments/counter", book: @book %>
+          </td>
           <td class="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/btn", book: @book %>
           </td>
@@ -28,7 +30,7 @@
           <% end %>
         </tr>
       </table>
-      <div class="comments_area">
+      <div class="book-comments-index">
         <%= render "book_comments/index", book: @book %>
       </div>
       <div class="new-comment">
