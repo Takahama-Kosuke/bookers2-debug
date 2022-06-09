@@ -7,20 +7,25 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
-  <div class="form-group row" id="star">
-    <%= f.label :star,'Rate', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
+  <% if book.id === nil %>
+    <div class="form-group" id="star">
+      <%= f.label :rate %>
+      <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
+    </div>
     <script>
       $('#star').empty();
       $('#star').raty({
-        size: 36,
-        starOff: '<%= asset_path('star-off.png') %>',
-        starOn: '<%= asset_path('star-on.png') %>',
-        scoreName: 'book[star]',
-        half: false
-      })
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'book[rate]',
+        half: true,
+      });
     </script>
-  </div>
+  <% else %>
+    <%= render "static_rate", book: book %>
+  <% end %>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
