@@ -14,8 +14,8 @@
     </div>
     <script>
     $(document).on('turbolinks:load', function() {
-      $('#rate_<%= book.id %>').empty();
-      $('#rate_<%= book.id %>').raty({
+      $('#rate').empty();
+      $('#rate').raty({
         size     : 36,
         starOff:  '<%= asset_path('star-off.png') %>',
         starOn : '<%= asset_path('star-on.png') %>',
