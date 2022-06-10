@@ -7,6 +7,9 @@ class Book < ApplicationRecord
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :star_count, -> {order(rate: :desc)}
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

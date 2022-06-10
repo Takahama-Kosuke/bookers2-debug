@@ -13,8 +13,9 @@
       <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
     </div>
     <script>
-      $('#star').empty();
-      $('#star').raty({
+    $(document).on('turbolinks:load', function() {
+      $('#rate_<%= book.id %>').empty();
+      $('#rate_<%= book.id %>').raty({
         size     : 36,
         starOff:  '<%= asset_path('star-off.png') %>',
         starOn : '<%= asset_path('star-on.png') %>',
@@ -22,6 +23,7 @@
         scoreName: 'book[rate]',
         half: true,
       });
+    })
     </script>
   <% else %>
     <%= render "static_rate", book: book %>
