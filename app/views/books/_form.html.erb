@@ -8,8 +8,8 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group">
-    <%= f.label :tag %>
-    <%= f.text_field :tag_name, class: 'form-control book_tag' %>
+    <%= f.label "Tag" %>
+    <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
   </div>
   <% if book.id === nil %>
     <div class="form-group" id="star">
