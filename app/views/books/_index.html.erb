@@ -4,6 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Tag</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         </td>
         <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
+        <td><%= link_to tag.tag_name, books_path(tag) %></td>
         <td class="favorite_buttons_<%= book.id %>">
           <%= render "favorites/btn", book: book %>
         </td>

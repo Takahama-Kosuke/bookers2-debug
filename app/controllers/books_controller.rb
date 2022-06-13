@@ -2,8 +2,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    tag_list = params[:book][:tag_name].split(nil)
     @book.user_id = current_user.id
     if @book.save
+      @book.save_books(tag_list)
       redirect_to book_path(@book.id), notice: "You have created book successfully."
     else
       @books = Book.all
@@ -19,8 +21,16 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
     @book = Book.new
+    if params[:search].present?
+      books = Book.books_search(params[:search])
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      books = @tag.books.order(created_at: :desc)
+    else
+      books = Book.all.order(created_at: :desc)
+    end
+    @tag_lists = Tag.all
   end
 
   def show
